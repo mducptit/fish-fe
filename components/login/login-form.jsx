@@ -19,8 +19,8 @@ function LoginForm() {
             <input
               type="email"
               placeholder="Email address or phone number"
-              {...register('name')}
-              className="login-input"
+              {...register('email')}
+              className="login-input focus:outline-none"
             />
             {errors?.email && <span>Email is required</span>}
           </div>
@@ -29,7 +29,7 @@ function LoginForm() {
             <input
               type="password"
               placeholder="Password"
-              className="login-input"
+              className="login-input focus:outline-none"
               {...register('password')}
             />
             {errors?.password && <span>Password is required</span>}
@@ -45,9 +45,9 @@ function LoginForm() {
               Forgotten Password?
             </a>
           </div>
-          <hr />
+          <div className='border w-[90%] my-2'/>
           <div className="text-center">
-            <button type="submit" className='create-new-btn'>Create new account</button>
+            <button type="submit" className='font-medium create-new-btn'>Create new account</button>
           </div>
         </form>
       </div>

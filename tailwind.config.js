@@ -6,6 +6,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
     './components-v2/**/*.{js,ts,jsx,tsx}',
     './@/**/*.{js,ts,jsx,tsx}',
+    'node_modules/preline/dist/*.js',
   ],
   theme: {
     extend: {
@@ -14,7 +15,13 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      color: {
+        primary: "#3b5998",
+        lightBlue: '#3578e5'
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('preline/plugin'),
+  ],
 }

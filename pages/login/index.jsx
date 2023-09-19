@@ -7,9 +7,9 @@ function Login() {
     <div className="flex flex-col min-h-screen">
       {/* Page content */}
       <div className="flex flex-row justify-center flex-grow bg-[#f0f2f5] min-w-full">
-        <div className="flex flex-col gap-2 justify-center items-start w-1/3">
-          <h1 className="text-6xl font-bold text-blue-500">facebook</h1>
-          <h2 className="text-2xl font-normal w-4/5">
+        <div className="flex flex-col pb-20 justify-center items-start w-1/3">
+          <h1 className="text-[60px] font-bold text-blue-500">facebook</h1>
+          <h2 className="text-[27px] font-normal w-4/5">
             Facebook helps you connect and share with the people in your life.
           </h2>
         </div>
@@ -21,7 +21,6 @@ function Login() {
     </div>
   );
 }
-// components/Footer.js
 
 function Footer() {
   const currentYear = new Date().getFullYear()

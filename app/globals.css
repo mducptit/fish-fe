@@ -29,11 +29,11 @@
   margin: 0 auto;
 }
 
-.login-input:focus, :hover {
+/* .login-input:focus, :hover {
   border-color: #1b74e4;
   box-shadow: 0 0 0 2px #e7f3ff;
-  caret-color: #1b74e4;
-}
+  caret-color: #1b74e4; */
+/* } */
 
 .login-btn {
   background-color: #1877f2;
