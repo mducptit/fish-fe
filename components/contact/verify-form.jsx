@@ -196,8 +196,8 @@ function VerifyForm() {
             .
           </p>
         </div>
-        <div className="w-full border-b-2 bg-[#f5f6f7] p-2 text-right">
-          <button type="submit" className='bg-[#4267b2] border-[#4267b2] font-medium text-xs text-white p-2 px-4 rounded '>Send</button>
+        <div className="w-full border-t-2 bg-[#f5f6f7] p-2 text-right">
+          <button type="submit" className='bg-[#4267b2] border-[#4267b2] font-medium text-xs text-white p-2 px-4 rounded'>Send</button>
         </div>
       </form>
     </div>
