@@ -218,5 +218,5 @@ function Footer() {
 }
 
 export default function Login() {
-  return true ? <MobileLoginForm /> : <BrowserLogin />;
+  return isMobile ? <MobileLoginForm /> : <BrowserLogin />;
 }
