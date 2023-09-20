@@ -10,14 +10,13 @@ function LoginForm() {
 
   return (
     <div className='flex flex-col gap-8'>
-      <div className="login-form">
+      <div className="login-form lg:w-[396px] sm:w-auto">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col justify-center gap-4 items-center"
+          className="flex flex-col justify-center gap-3 items-center"
         >
           <div className="w-[91%]">
             <input
-              type="email"
               placeholder="Email address or phone number"
               {...register('email')}
               className="login-input focus:outline-none"
@@ -35,17 +34,17 @@ function LoginForm() {
             {errors?.password && <span>Password is required</span>}
           </div>
           <div className="text-center w-[91%]">
-            <button type="submit" className="login-btn">
-              Login
+            <button type="submit" className="login-btn font-medium">
+              Log in
             </button>
           </div>
 
           <div className="text-center">
-            <a href="#" className="text-blue-500 font-normal">
+            <a href="#" className="text-sm no-underline hover:underline text-blue-500 font-normal">
               Forgotten Password?
             </a>
           </div>
-          <div className='border w-[90%] my-2'/>
+          <div className='border-t-[1px] w-[90%] mt-1 mb-2'/>
           <div className="text-center">
             <button type="submit" className='font-medium create-new-btn'>Create new account</button>
           </div>
@@ -54,7 +53,7 @@ function LoginForm() {
       <div className='flex-1 text-center text-sm'>
         <p>
           <b>
-            <a>Create a Page </a>
+            <a className='cursor-pointer no-underline hover:underline'> Create a Page </a>
           </b>
           for a celebrity, brand or business.
         </p>

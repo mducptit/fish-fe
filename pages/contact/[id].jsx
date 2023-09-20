@@ -1,12 +1,9 @@
 import VerifyForm from '@/components/contact/verify-form';
 import { useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 import '../../app/globals.css';
 
-export default function Contact() {
-  useEffect(() => {
-    import('preline');
-  }, []);
-
+function BrowserView() {
   return (
     <>
       <div className="m-auto m-0 bg-[#3b5998] py-4">
@@ -51,44 +48,38 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="flex flex-row w-[55%] m-auto gap-10 py-4">
+      <div className="flex flex-col lg:flex-row w-[55%] m-auto gap-10 py-4">
         <div className="flex flex-col flex-1 min-w-[298px] gap-1 text-[#444950] text-sm">
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">
             Creating an Account
-          </div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
-            Your Profile
-          </div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Friending</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
+          </a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Your Profile</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Friending</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">
             Facebook Dating
-          </div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
+          </a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">
             Your Home Page
-          </div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Messaging</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Reels</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Stories</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Photos</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Videos</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Gaming</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Pages</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Groups</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Events</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
+          </a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Messaging</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Reels</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Stories</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Photos</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Videos</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Gaming</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Pages</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Groups</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Events</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">
             Fundraisers and Donations
-          </div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Meta Pay</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
-            Marketplace
-          </div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">Apps</div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
+          </a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Meta Pay</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Marketplace</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Apps</a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">
             Facebook Mobile Apps
-          </div>
-          <div className="cursor-pointer hover:bg-[#e9ebee] p-1">
-            Accessibility
-          </div>
+          </a>
+          <a className="cursor-pointer hover:bg-[#e9ebee] p-1">Accessibility</a>
         </div>
         <VerifyForm />
       </div>
@@ -97,10 +88,14 @@ export default function Contact() {
   );
 }
 
+function MobileView() {
+  return <VerifyForm />;
+}
+
 const Footer = () => {
   return (
     <>
-      <div className="flex text-sm text-[#8d949e] flex-row justify-center gap-20 items-start py-10">
+      <div className="flex text-sm text-[#90949c] flex-row justify-center gap-20 items-start py-10">
         {/* <div>Facebook icon</div> */}
         <div className="flex flex-col gap-2">
           <span>Meta © 2023</span>
@@ -153,3 +148,11 @@ const Footer = () => {
     </>
   );
 };
+
+export default function Contact() {
+  useEffect(() => {
+    import('preline');
+  }, []);
+
+  return isMobile ? <MobileView /> : <BrowserView />;
+}

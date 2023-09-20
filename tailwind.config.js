@@ -9,6 +9,17 @@ module.exports = {
     'node_modules/preline/dist/*.js',
   ],
   theme: {
+    fontFamily: {
+      body: [
+        'Helvetica Neue',
+        'Helvetica, Arial',
+        'lucida grande',
+        'tahoma',
+        'verdana',
+        'arial',
+        'sans-serif',
+      ],
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -16,12 +27,10 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       color: {
-        primary: "#3b5998",
-        lightBlue: '#3578e5'
-      }
+        primary: '#3b5998',
+        lightBlue: '#3578e5',
+      },
     },
   },
-  plugins: [
-    require('preline/plugin'),
-  ],
-}
+  plugins: [require('preline/plugin')],
+};

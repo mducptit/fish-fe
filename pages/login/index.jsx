@@ -1,20 +1,23 @@
 import React from 'react';
 import LoginForm from '../../components/login/login-form';
 import '../../app/globals.css';
+import { isMobile } from 'react-device-detect';
+import MobileLoginForm from '@/components/login/mobile-login-form';
 
-function Login() {
+function BrowserLogin() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Page content */}
-      <div className="flex flex-row justify-center flex-grow bg-[#f0f2f5] min-w-full">
-        <div className="flex flex-col pb-20 justify-center items-start w-1/3">
-          <h1 className="text-[60px] font-bold text-blue-500">facebook</h1>
-          <h2 className="text-[27px] font-normal w-4/5">
-            Facebook helps you connect and share with the people in your life.
-          </h2>
-        </div>
-        <div className="flex justify-center items-center">
-          <LoginForm />
+      <div className="bg-[#f0f2f5] flex flex-col lg:flex-row justify-center items-center flex-grow">
+        <div className="flex flex-col lg:flex-row justify-center items-center m-0 m-auto gap-20">
+          <div className=" flex flex-col justify-center w-[41%]">
+            <h1 className="text-[60px] font-bold text-blue-500">facebook</h1>
+            <h2 className="text-[27px] font-normal">
+              Facebook helps you connect and share with the people in your life.
+            </h2>
+          </div>
+          <div className="flex justify-center items-center flex-col">
+            <LoginForm />
+          </div>
         </div>
       </div>
       <Footer />
@@ -23,60 +26,198 @@ function Login() {
 }
 
 function Footer() {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="flex-shrink-0">
-      <div className="container flex flex-col justify-center items-start mx-auto text-center w-[58%]">
-        <ul className='footer-text flex flex-wrap gap-2 pb-3 pt-8'>
+      <div className="container flex flex-col justify-center items-start mx-auto text-center w-[50%]">
+        <ul className="footer-text flex flex-wrap gap-2 pb-3 pt-8 justify-center items-center">
           <li> English (UK)</li>
-          <li> Tiếng Việt</li>
-          <li> 中文(台灣)</li>
-          <li> 한국어</li>
-          <li> 日本語</li>
-          <li> Français (France)</li>
-          <li> ภาษาไทย</li>
-          <li> Español</li>
-          <li> Português (Brasil)</li>
-          <li> Deutsch</li>
-          <li> Italiano</li>
+          <li className="cursor-pointer no-underline hover:underline">
+            Tiếng Việt
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            中文(台灣)
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            한국어
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            日本語
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            Français (France)
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            ภาษาไทย
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            Español
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            Português (Brasil)
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            Deutsch
+          </li>
+          <li className="cursor-pointer no-underline hover:underline">
+            Italiano
+          </li>
+          <li className="border border-slate-200 px-2 cursor-pointer bg-[#f0f2f5] text-sm font-medium">
+            +
+          </li>
         </ul>
-        <hr className='border-1 w-full'/>
-        <ul className='footer-text flex flex-wrap pt-3 m-0 gap-2'>
-          <li> <a> Sign Up </a></li>
-          <li> <a> Log in</a></li>
-          <li> <a> Messenger</a></li>
-          <li> <a>Facebook Lite</a></li>
-          <li> <a> Video</a></li>
-          <li> <a> Places</a></li>
-          <li> <a> Games</a></li>
-          <li> <a> Marketplace</a></li>
-          <li> <a> Meta Pay</a></li>
-          <li> <a>Meta Store</a></li>
-          <li> <a>Meta Quest</a></li>
-          <li> <a> Instagram</a></li>
-          <li> <a> Threads</a></li>
-          <li> <a>Fundraisers</a></li>
-          <li> <a> Services</a></li>
-          <li> <a> Voting Information Centre</a></li>
-          <li> <a> Privacy Policy</a></li>
-          <li> <a> Privacy Centre</a></li>
-          <li> <a> Groups</a></li>
-          <li> <a> About</a></li>
-          <li> <a>Create ad</a></li>
-          <li> <a> Create Page</a></li>
-          <li> <a> Developers</a></li>
-          <li> <a> Careers</a></li>
-          <li> <a> Cookies</a></li>
-          <li> <a> AdChoices</a></li>
-          <li> <a> Terms</a></li>
-          <li> <a>Help</a></li>
-          <li> <a> Contact uploading and non-users</a></li>
-          <li> <a> Settings</a></li>
-          </ul>
-      <div className='footer-text my-4'><p>Meta © {currentYear}</p></div>
+        <hr className="border-1 w-full" />
+        <ul className="footer-text flex flex-wrap pt-3 m-0 gap-3">
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Sign Up{' '}
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Log in
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Messenger
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Facebook Lite
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">Video</a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Places
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">Games</a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Marketplace
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Meta Pay
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Meta Store
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Meta Quest
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Threads
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Fundraisers
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Services
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Voting Information Centre
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Privacy Centre
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Groups
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">About</a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Create ad
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Create Page
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Developers
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Careers
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Cookies
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              AdChoices
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">Terms</a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline"> Help</a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Contact uploading and non-users
+            </a>
+          </li>
+          <li>
+            <a className="cursor-pointer no-underline hover:underline">
+              Settings
+            </a>
+          </li>
+        </ul>
+        <div className="footer-text mt-4 mb-8">
+          <p className="text-[11px]">Meta © {currentYear}</p>
+        </div>
       </div>
     </footer>
   );
 }
 
-export default Login;
+export default function Login() {
+  console.log("isMobile", isMobile)
+  return isMobile ? <MobileLoginForm /> : <BrowserLogin />;
+}

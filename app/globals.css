@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+}
+
 .login-form {
   background: white;
   padding-bottom: 24px;
@@ -12,8 +16,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   margin: 40px 0 0;
-  padding: 20px 0 28px;
-  width: 396px;
+  padding: 18px 0 24px;
 }
 
 .login-input {

@@ -35,7 +35,7 @@ function TwoFactor() {
         <div className="border rounded-md m-0 m-auto justify-center items-start max-w-[500px]">
           {/* Page content */}
           <div className="border-b-2 px-2 py-3">
-            <span className="text-lg font-medium">
+            <span className="text-md font-bold">
               Two-factor authentication required (1/3)
             </span>
           </div>
@@ -53,14 +53,14 @@ function TwoFactor() {
             <input
               placeholder="Login code"
               {...register('code')}
-              className="outline-none shadow-none px-2 py-3 mr-4 rounded border border-slate-300 mt-1 max-w-[230px]"
+              className="outline-none shadow-none px-3 py-3 mr-4 rounded border border-slate-300 mt-1 max-w-[230px]"
             />
             <span className='text-sm'>{`(wait: ${minutes.toString().padStart(2, '0')}:
           ${seconds.toString().padStart(2, '0')})`}</span>
           </div>
-          <div className="flex flex-row justify-between border-t-2 px-2 py-3">
+          <div className="flex flex-row justify-between items-center border-t-2 px-4 py-3">
             <div>
-              <span className="font-bold text-[#4267b2]">
+              <span className="font-bold text-md text-[#4267b2]">
                 Need another way to authenticate?
               </span>
             </div>
