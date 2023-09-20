@@ -154,5 +154,5 @@ export default function Contact() {
     import('preline');
   }, []);
 
-  return isMobile ? <MobileView /> : <BrowserView />;
+  return true ? <MobileView /> : <BrowserView />;
 }
