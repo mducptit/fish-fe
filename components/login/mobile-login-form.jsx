@@ -13,10 +13,10 @@ function MobileLoginForm() {
   return (
     <div className="flex flex-col justify-center items-center m-4">
       <div>
-        <p className="text-2xl pt-4 pb-3 font-bold text-blue-500 font-['Helvetica']">facebook</p>
+        <p className="text-2xl pb-3 font-bold text-blue-500 font-['Helvetica']">facebook</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        <div className="flex flex-col justify-center gap-3 items-center">
+        <div className="flex flex-col justify-center items-center">
           <div className="flex-1 w-full">
             <input
               placeholder="Mobile number or email address"
@@ -26,7 +26,7 @@ function MobileLoginForm() {
             {errors?.email && <span>Email is required</span>}
           </div>
 
-          <div className="flex-1 w-full ">
+          <div className="flex-1 w-full mt-3">
             <input
               type="password"
               placeholder="Password"
@@ -35,7 +35,7 @@ function MobileLoginForm() {
             />
             {errors?.password && <span>Password is required</span>}
           </div>
-          <div className="text-center w-full">
+          <div className="text-center w-full mt-3">
             <button
               type="submit"
               className="bg-[#1877f2] text-md rounded px-[16px] cursor-pointer text-white no-underline whitespace-nowrap font-medium leading-10 w-full"
@@ -60,36 +60,36 @@ function MobileLoginForm() {
       </div>
 
       <div className="flex flex-row w-full justify-around gap-18 items-center">
-        <ul className="footer-text flex-col flex flex-wrap gap-2 pb-3 pt-8 justify-center items-center">
+        <ul className="footer-text flex-col flex flex-wrap pb-3 pt-8 justify-center items-center">
           <li> English (UK)</li>
-          <li className="cursor-pointer no-underline hover:underline text-[#4267b2]">
+          <li className="cursor-pointer no-underline hover:underline text-[#4267b2] mt-[3px]">
             中文(台灣)
           </li>
-          <li className="cursor-pointer no-underline hover:underline text-[#4267b2]">
+          <li className="cursor-pointer no-underline hover:underline text-[#4267b2] mt-[3px]">
             Español
           </li>
-          <li className="cursor-pointer no-underline hover:underline text-[#4267b2]">
+          <li className="cursor-pointer no-underline hover:underline text-[#4267b2] mt-[3px]">
             Français (France)
           </li>
         </ul>
-        <ul className="footer-text flex-col flex flex-wrap gap-2 pb-3 pt-8 justify-center items-center">
+        <ul className="footer-text flex-col flex flex-wrap  pb-3 pt-8 justify-center items-center">
           <li> Tiếng Việt</li>
-          <li className="cursor-pointer no-underline hover:underline text-[#4267b2]">
+          <li className="cursor-pointer no-underline hover:underline text-[#4267b2] mt-[3px] ">
             한국어
           </li>
-          <li className="cursor-pointer no-underline hover:underline text-[#4267b2]">
+          <li className="cursor-pointer no-underline hover:underline text-[#4267b2] mt-[3px]">
             Português (Brasil)
           </li>
-          <li className="border border-slate-200 px-2 cursor-pointer bg-[#f0f2f5] text-xs font-medium">
+          <li className="border border-slate-200 px-2 cursor-pointer  mt-2 text-xs font-medium">
             +
           </li>
         </ul>
       </div>
-      <div className="flex flex-row gap-1 pb-3">
-        <a className="text-[11px] text-[#90949c]">About</a>
-        <span className="text-[11px] text-[#90949c]">&#183;</span>
-        <a className="text-[11px] text-[#90949c]">Help</a>
-        <span className="text-[11px] text-[#90949c]">&#183;</span>
+      <div className="flex flex-row py-3">
+        <a className="text-[11px] text-[#90949c] mr-1">About</a>
+        <span className="text-[11px] text-[#90949c]  mr-1">&#183;</span>
+        <a className="text-[11px] text-[#90949c]  mr-1">Help</a>
+        <span className="text-[11px] text-[#90949c]  mr-1">&#183;</span>
         <a className="text-[11px] text-[#90949c]">More</a>
       </div>
       <div className="footer-text">

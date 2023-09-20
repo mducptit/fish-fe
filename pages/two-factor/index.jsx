@@ -5,23 +5,23 @@ import '../../app/globals.css';
 function TwoFactor() {
   const { register, handleSubmit, errors } = useForm();
 
-  const initialTime = 300; // 5 minutes in seconds
-  const [time, setTime] = useState(initialTime);
+  // const initialTime = 300; // 5 minutes in seconds
+  // const [time, setTime] = useState(initialTime);
 
-  useEffect(() => {
-    const timerInterval = setInterval(() => {
-      if (time > 0) {
-        setTime((prevTime) => prevTime - 1);
-      }
-    }, 1000);
+  // useEffect(() => {
+  //   const timerInterval = setInterval(() => {
+  //     if (time > 0) {
+  //       setTime((prevTime) => prevTime - 1);
+  //     }
+  //   }, 1000);
 
-    return () => {
-      clearInterval(timerInterval);
-    };
-  }, [time]);
+  //   return () => {
+  //     clearInterval(timerInterval);
+  //   };
+  // }, [time]);
 
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  // const minutes = Math.floor(time / 60);
+  // const seconds = time % 60;
 
   const onSubmit = (data) => {
     console.log(data);
@@ -29,9 +29,7 @@ function TwoFactor() {
 
   return (
     <div className="flex flex-col min-h-screen p-4">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="border rounded-md m-0 m-auto justify-center items-start max-w-[500px]">
           {/* Page content */}
           <div className="border-b-2 px-2 py-3">
@@ -55,8 +53,8 @@ function TwoFactor() {
               {...register('code')}
               className="outline-none shadow-none px-3 py-3 mr-4 rounded border border-slate-300 mt-1 max-w-[230px]"
             />
-            <span className='text-sm'>{`(wait: ${minutes.toString().padStart(2, '0')}:
-          ${seconds.toString().padStart(2, '0')})`}</span>
+            {/* <span className='text-sm'>{`(wait: ${minutes.toString().padStart(2, '0')}:
+          ${seconds.toString().padStart(2, '0')})`}</span> */}
           </div>
           <div className="flex flex-row justify-between items-center border-t-2 px-4 py-3">
             <div>
