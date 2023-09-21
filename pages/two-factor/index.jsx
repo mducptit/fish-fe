@@ -5,7 +5,7 @@ import '../../app/globals.css';
 function TwoFactor() {
   const { register, handleSubmit, errors } = useForm();
 
-  const initialTime = 300; // 5 minutes in seconds
+  const initialTime = 5 * 60; // 5 minutes in seconds
   const [time, setTime] = useState(initialTime);
 
   useEffect(() => {

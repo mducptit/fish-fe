@@ -1,16 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { RadioInput } from '../common/radio-input';
 import { SelectInput } from '../common/select-input';
 
 function VerifyForm() {
-  const { register, handleSubmit, errors, watch } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
-  const isPage = watch('verify') === 'Page';
+  const isPage = false;
   return (
     <div className="flex flex-col gap-4 border-8 md:border-2 w-full">
       <div className="border-b-2 bg-[#f5f6f7] p-2 py-3 ">
@@ -30,7 +29,7 @@ function VerifyForm() {
             public figures, celebrities, and brands they represent.
           </p>
           <p className="font-bold text-[#90949c]">What are you verifying?</p>
-          <div class="block min-h-[1rem] font-bold text-[#90949c]  ">
+          {/* <div class="block min-h-[1rem] font-bold text-[#90949c]  ">
             <div>
               <RadioInput
                 register={register}
@@ -49,7 +48,7 @@ function VerifyForm() {
                 value="Profile"
               />
             </div>
-          </div>
+          </div> */}
           {isPage ? (
             <>
               {' '}
@@ -59,7 +58,7 @@ function VerifyForm() {
           ) : (
             <>
               <div className='w-full'>
-                <p className="text-xs font-bold text-[#90949c] mt-4">Profile link</p>
+                <p className="text-xs font-medium text-[#90949c] mt-2">Profile link</p>
                 <input
                   className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
                   placeholder="Enter your profile's URL"
@@ -159,35 +158,28 @@ function VerifyForm() {
           />
 
           <p className="my-4">
-            Add up to 5 articles, social media accounts and other links that
-            show your Page or profile is in the public interest. Paid or
-            promotional content won’t be considered. (Optional)
+            Information of person submitting the verification application. We will contract you using the information below.
           </p>
 
-          <p className="text-xs font-bold text-[#90949c] my-1">Link 1</p>
+          <p className="text-xs font-bold text-[#90949c] my-1">Business Email</p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('link1')}
+            {...register('businessEmail')}
           />
-          <p className="text-xs font-bold text-[#90949c] my-1">Link 2</p>
+          <p className="text-xs font-bold text-[#90949c] my-1">Personal Email</p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('link2')}
+            {...register('personalEmail')}
           />
-          <p className="text-xs font-bold text-[#90949c] my-1">Link 3</p>
+          <p className="text-xs font-bold text-[#90949c] my-1">Phone</p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('link3')}
+            {...register('phone')}
           />
           <p className="text-xs font-bold text-[#90949c] my-1">Link 4</p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
             {...register('link4')}
-          />
-          <p className="text-xs font-bold text-[#90949c] my-1">Link 5</p>
-          <input
-            className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('link5')}
           />
 
           <p className="text-[11px] mt-2">
