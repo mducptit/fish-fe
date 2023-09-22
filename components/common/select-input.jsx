@@ -11,7 +11,7 @@ export const SelectInput = ({
     <>
       <p className="text-xs font-medium mb-2">{label}</p>
       <select
-        class={['py-1', className].join(' ')}
+        className={['py-1', className].join(' ')}
         {...register(name)}
         {...props}
       >
