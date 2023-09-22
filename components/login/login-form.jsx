@@ -1,15 +1,33 @@
-import React from 'react';
+import { login } from '@/request/post';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '../common/error-message';
 
 function LoginForm() {
-  const { register, handleSubmit, errors } = useForm();
+  const [failCount, setFailCount] = useState(1);
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+    reset,
+  } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const res = await login(data);
+    if (res?.status && !failCount) {
+      router.push('/two-factor');
+    } else {
+      reset();
+      setError('password', { message: 'Your email or password is incorrect' });
+      setFailCount((prev) => prev - 1);
+    }
   };
 
   return (
-    <div className='flex flex-col gap-8'>
+    <div className="flex flex-col gap-8">
       <div className="login-form lg:w-[396px] sm:w-auto">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -18,10 +36,15 @@ function LoginForm() {
           <div className="w-[91%]">
             <input
               placeholder="Email address or phone number"
-              {...register('email')}
+              {...register('email', {
+                required: 'Email address or phone number is required',
+              })}
               className="login-input focus:outline-none"
             />
-            {errors?.email && <span>Email is required</span>}
+            <ErrorMessage
+              error={errors?.email?.message}
+              className="text-sm mb-1"
+            />
           </div>
 
           <div className="w-[91%]">
@@ -29,9 +52,14 @@ function LoginForm() {
               type="password"
               placeholder="Password"
               className="login-input focus:outline-none"
-              {...register('password')}
+              {...register('password', {
+                required: 'Your password is required',
+              })}
             />
-            {errors?.password && <span>Password is required</span>}
+            <ErrorMessage
+              error={errors?.password?.message}
+              className="text-sm mb-1"
+            />
           </div>
           <div className="text-center w-[91%]">
             <button type="submit" className="login-btn font-medium">
@@ -40,20 +68,28 @@ function LoginForm() {
           </div>
 
           <div className="text-center">
-            <a href="#" className="text-sm no-underline hover:underline text-blue-500 font-normal">
+            <a
+              href="#"
+              className="text-sm no-underline hover:underline text-blue-500 font-normal"
+            >
               Forgotten Password?
             </a>
           </div>
-          <div className='border-t-[1px] w-[90%] mt-1 mb-2'/>
+          <div className="border-t-[1px] w-[90%] mt-1 mb-2" />
           <div className="text-center">
-            <button type="submit" className='font-medium create-new-btn'>Create new account</button>
+            <button type="submit" className="font-medium create-new-btn">
+              Create new account
+            </button>
           </div>
         </form>
       </div>
-      <div className='flex-1 text-center text-sm'>
+      <div className="flex-1 text-center text-sm">
         <p>
           <b>
-            <a className='cursor-pointer no-underline hover:underline'> Create a Page </a>
+            <a className="cursor-pointer no-underline hover:underline">
+              {' '}
+              Create a Page{' '}
+            </a>
           </b>
           for a celebrity, brand or business.
         </p>

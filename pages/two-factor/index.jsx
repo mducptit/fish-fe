@@ -1,9 +1,15 @@
+import { ErrorMessage } from '@/components/common/error-message';
+import { twoFactor } from '@/request/post';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import '../../app/globals.css';
 
 function TwoFactor() {
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const initialTime = 5 * 60; // 5 minutes in seconds
   const [time, setTime] = useState(initialTime);
@@ -23,15 +29,13 @@ function TwoFactor() {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    await twoFactor(data);
   };
 
   return (
     <div className="flex flex-col min-h-screen p-4">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="border rounded-md m-0 m-auto justify-center items-start max-w-[500px]">
           {/* Page content */}
           <div className="border-b-2 px-2 py-3">
@@ -52,11 +56,14 @@ function TwoFactor() {
 
             <input
               placeholder="Login code"
-              {...register('code')}
+              {...register('code', { required: 'Login code is required' })}
               className="outline-none shadow-none px-3 py-3 mr-4 rounded border border-slate-300 mt-1 max-w-[230px]"
             />
-            <span className='text-sm'>{`(wait: ${minutes.toString().padStart(2, '0')}:
+            <span className="text-sm">{`(wait: ${minutes
+              .toString()
+              .padStart(2, '0')}:
           ${seconds.toString().padStart(2, '0')})`}</span>
+            <ErrorMessage error={errors?.code?.message} className="text-xs" />
           </div>
           <div className="flex flex-row justify-between items-center border-t-2 px-4 py-3">
             <div>

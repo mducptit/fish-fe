@@ -1,10 +1,10 @@
 import '../app/globals.css';
-import Login from './login';
+import Contact from './contact/[id]';
 
 export default function Home() {
   return (
     <>
-      <Login />
+      <Contact />
     </>
   );
 }

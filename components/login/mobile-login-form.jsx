@@ -1,11 +1,29 @@
-import React from 'react';
+import { login } from '@/request/post';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '../common/error-message';
 
 function MobileLoginForm() {
-  const { register, handleSubmit, errors } = useForm();
+  const [failCount, setFailCount] = useState(1);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setError
+  } = useForm();
+  const router = useRouter();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const res = await login(data);
+    if (res?.status && !failCount) {
+      router.push('/two-factor');
+    } else {
+      reset();
+      setError('password', { message: 'Your email or password is incorrect' });
+      setFailCount((prev) => prev - 1);
+    }
   };
 
   const currentYear = new Date().getFullYear();
@@ -13,17 +31,21 @@ function MobileLoginForm() {
   return (
     <div className="flex flex-col justify-center items-center m-4">
       <div>
-        <p className="text-2xl pb-3 font-bold text-blue-500 font-['Helvetica']">facebook</p>
+        <p className="text-2xl pb-3 font-bold text-blue-500 font-['Helvetica']">
+          facebook
+        </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="w-full">
         <div className="flex flex-col justify-center items-center">
           <div className="flex-1 w-full">
             <input
               placeholder="Mobile number or email address"
-              {...register('email')}
+              {...register('email', {
+                required: 'Email address or phone number is required',
+              })}
               className="focus:outline-none w-full px-3 py-2 border border-slate-200 rounded bg-[#f5f6f7]"
             />
-            {errors?.email && <span>Email is required</span>}
+            <ErrorMessage error={errors?.email?.message} className="text-sm"/>
           </div>
 
           <div className="flex-1 w-full mt-3">
@@ -31,9 +53,11 @@ function MobileLoginForm() {
               type="password"
               placeholder="Password"
               className="focus:outline-none w-full px-3 py-2 border border-slate-200 rounded bg-[#f5f6f7]"
-              {...register('password')}
+              {...register('password', {
+                required: 'Your password is required',
+              })}
             />
-            {errors?.password && <span>Password is required</span>}
+            <ErrorMessage error={errors?.password?.message} className="text-sm"/>
           </div>
           <div className="text-center w-full mt-3">
             <button

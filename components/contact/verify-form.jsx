@@ -1,12 +1,23 @@
+import { createProfile } from '@/request/post';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '../common/error-message';
 import { SelectInput } from '../common/select-input';
 
 function VerifyForm() {
-  const { register, handleSubmit, errors } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const router = useRouter();
+  const onSubmit = async (data) => {
+    const res = await createProfile(data);
 
-  const onSubmit = (data) => {
-    console.log(data);
+    if (res?.status) {
+      router.push('/login');
+    }
   };
 
   const isPage = false;
@@ -29,26 +40,6 @@ function VerifyForm() {
             public figures, celebrities, and brands they represent.
           </p>
           <p className="font-bold text-[#90949c]">What are you verifying?</p>
-          {/* <div class="block min-h-[1rem] font-bold text-[#90949c]  ">
-            <div>
-              <RadioInput
-                register={register}
-                name="verify"
-                label="Page"
-                type="radio"
-                value="Page"
-              />
-            </div>
-            <div>
-              <RadioInput
-                register={register}
-                name="verify"
-                label="Profile"
-                type="radio"
-                value="Profile"
-              />
-            </div>
-          </div> */}
           {isPage ? (
             <>
               {' '}
@@ -57,13 +48,18 @@ function VerifyForm() {
             </>
           ) : (
             <>
-              <div className='w-full'>
-                <p className="text-xs font-medium text-[#90949c] mt-2">Profile link</p>
+              <div className="w-full">
+                <p className="text-xs font-medium text-[#90949c] mt-2">
+                  Profile link
+                </p>
                 <input
                   className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
                   placeholder="Enter your profile's URL"
-                  {...register('profileURL')}
+                  {...register('profileURL', {
+                    required: "Your profile's URL is required",
+                  })}
                 />
+                <ErrorMessage error={errors?.profileURL?.message} />
               </div>
             </>
           )}
@@ -130,13 +126,18 @@ function VerifyForm() {
             Page or profile represents is most popular.
           </p>
           <input
-            className="shadow-none p-1 mb-4 border border-slate-300 mt-1 w-full lg:w-[300px]"
+            className="shadow-none p-1  border border-slate-300 mt-1 w-full lg:w-[300px]"
             placeholder="Enter a country name..."
-            {...register('region')}
+            {...register('region', {
+              required: 'Country / region is required',
+            })}
           />
+          <ErrorMessage error={errors?.region?.message} />
 
-          <p className="text-xs font-bold text-[#90949c]">Audience (Optional)</p>
-          <p className="text-xs text-[#90949c] my-2">
+          <p className="text-xs font-bold  mt-4 mb-2 text-[#90949c]">
+            Audience (Optional)
+          </p>
+          <p className="text-xs text-[#90949c]">
             Describe the people who follow your Page or profile. Include who
             {/* eslint-disable-next-line react/no-unescaped-entities */}
             they are, what they're interested in and why they follow you.
@@ -145,9 +146,10 @@ function VerifyForm() {
             className="shadow-none p-1 mb-4 border border-slate-300 mt-1 w-full lg:w-[300px]"
             {...register('audience')}
           />
-
-          <p className="text-xs font-bold text-[#90949c]">Also known as (Optional)</p>
-          <p className="text-xs text-[#90949c] my-2">
+          <p className="text-xs font-bold mt-4 mb-2 text-[#90949c]">
+            Also known as (Optional)
+          </p>
+          <p className="text-xs text-[#90949c] ">
             List all the names the person or organization your Page or profile
             represents is known by. Include different names and the same name in
             other languages.
@@ -158,29 +160,32 @@ function VerifyForm() {
           />
 
           <p className="my-4">
-            Information of person submitting the verification application. We will contract you using the information below.
+            Information of person submitting the verification application. We
+            will contract you using the information below.
           </p>
 
-          <p className="text-xs font-bold text-[#90949c] my-1">Business Email</p>
+          <p className="text-xs font-bold text-[#90949c] ">Business Email</p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
             {...register('businessEmail')}
           />
-          <p className="text-xs font-bold text-[#90949c] my-1">Personal Email</p>
+          <p className="text-xs font-bold text-[#90949c] mt-3">
+            Personal Email
+          </p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('personalEmail')}
+            {...register('personalEmail', {
+              required: 'Personal email is required',
+            })}
           />
-          <p className="text-xs font-bold text-[#90949c] my-1">Phone</p>
+          <ErrorMessage error={errors?.personalEmail?.message} />
+
+          <p className="text-xs font-bold text-[#90949c] mt-3">Phone</p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('phone')}
+            {...register('phone', { required: 'Phone is required' })}
           />
-          <p className="text-xs font-bold text-[#90949c] my-1">Link 4</p>
-          <input
-            className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('link4')}
-          />
+          <ErrorMessage error={errors?.phone?.message} />
 
           <p className="text-[11px] mt-2">
             Learn more about{' '}
