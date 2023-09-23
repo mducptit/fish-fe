@@ -54,7 +54,7 @@ function VerifyForm() {
             <>
               <div className="w-full">
                 <p className="text-xs font-medium text-[#90949c] mt-2">
-                  Profile link
+                  Fanpage link
                 </p>
                 <input
                   className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
@@ -80,7 +80,7 @@ function VerifyForm() {
             label="Document type"
             options={[
               `Driver's license`,
-              `Password`,
+              `Passport`,
               `National identification card`,
               `Tax filling`,
               `Recent utility bill`,
