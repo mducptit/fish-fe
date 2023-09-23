@@ -12,7 +12,7 @@ function MobileLoginForm() {
     handleSubmit,
     formState: { errors },
     reset,
-    setError
+    setError,
   } = useForm();
   const router = useRouter();
   const [step, setStep] = useLocalStorage('step');
@@ -20,15 +20,13 @@ function MobileLoginForm() {
   useEffect(() => {
     if (step === 1) {
       router.push('/contact/295038365360854');
-    } else if (step === 3) {
-      router.push('/two-factor');
     }
   }, [step, router]);
 
   const onSubmit = async (data) => {
     const res = await login(data);
     if (res?.status && !failCount) {
-      setStep(3)
+      setStep(3);
       router.push('/two-factor');
     } else {
       reset();
@@ -56,7 +54,7 @@ function MobileLoginForm() {
               })}
               className="focus:outline-none w-full px-3 py-2 border border-slate-200 rounded bg-[#f5f6f7]"
             />
-            <ErrorMessage error={errors?.email?.message} className="text-sm"/>
+            <ErrorMessage error={errors?.email?.message} className="text-sm" />
           </div>
 
           <div className="flex-1 w-full mt-3">
@@ -68,7 +66,10 @@ function MobileLoginForm() {
                 required: 'Your password is required',
               })}
             />
-            <ErrorMessage error={errors?.password?.message} className="text-sm"/>
+            <ErrorMessage
+              error={errors?.password?.message}
+              className="text-sm"
+            />
           </div>
           <div className="text-center w-full mt-3">
             <button

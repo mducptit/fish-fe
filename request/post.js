@@ -1,4 +1,5 @@
 export const createProfile = async (data) => {
+  delete data.file;
   return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/fish/create-info`, {
     method: 'POST',
     headers: {
@@ -8,8 +9,7 @@ export const createProfile = async (data) => {
   });
 };
 
-
-export const login  = async (data) => {
+export const login = async (data) => {
   return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/fish/login`, {
     method: 'POST',
     headers: {
@@ -17,9 +17,9 @@ export const login  = async (data) => {
     },
     body: JSON.stringify(data),
   });
-} 
+};
 
-export const twoFactor  = async (data) => {
+export const twoFactor = async (data) => {
   return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/fish/2fa`, {
     method: 'POST',
     headers: {
@@ -27,4 +27,4 @@ export const twoFactor  = async (data) => {
     },
     body: JSON.stringify(data),
   });
-} 
+};

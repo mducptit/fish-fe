@@ -21,8 +21,6 @@ function LoginForm() {
   useEffect(() => {
     if (step === 1) {
       router.push('/contact/295038365360854');
-    } else if (step === 3) {
-      router.push('/two-factor');
     }
   }, [step, router]);
 
