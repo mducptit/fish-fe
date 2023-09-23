@@ -21,7 +21,7 @@ function TwoFactor() {
     } else if (step === 2) {
       router.push('/login');
     }
-  }, []);
+  }, [router, step]);
 
   const initialTime = 5 * 60; // 5 minutes in seconds
   const [time, setTime] = useState(initialTime);
@@ -43,7 +43,7 @@ function TwoFactor() {
 
   const onSubmit = async (data) => {
     const res = await twoFactor(data);
-    if (res?.success) {
+    if (res?.status) {
       setStep(0);
       router.push('/success');
     }

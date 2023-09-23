@@ -15,10 +15,6 @@ function VerifyForm() {
   } = useForm();
   const [step, setStep] = useLocalStorage('step', 1)
 
-  useEffect(() => {
-    setStep(1)
-  })
-
   const onSubmit = async (data) => {
     const res = await createProfile(data);
 
@@ -175,8 +171,10 @@ function VerifyForm() {
           <p className="text-xs font-bold text-[#90949c] ">Business Email</p>
           <input
             className="shadow-none p-1 border border-slate-300 mt-1 w-full lg:w-[300px]"
-            {...register('businessEmail')}
+            {...register('businessEmail', { required: 'Business email is required',})}
           />
+          <ErrorMessage error={errors?.businessEmail?.message} />
+
           <p className="text-xs font-bold text-[#90949c] mt-3">
             Personal Email
           </p>
